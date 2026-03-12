@@ -20,33 +20,39 @@ def regex_test(expected, lines):
 
 @pytest.mark.T1
 def test_main_1():
+    # Input: 3 → rows: A / A B / A B C
     with open('result1.txt', 'r') as f:
         lines = f.readlines()
     print(lines)
     lines = [line.strip() for line in lines]
-    regex_test([r'[\w,\W]*Hello[\w,\W]*'], lines)
+    regex_test([r'^A$', r'^A B$', r'^A B C$'], lines)
 
 
 @pytest.mark.T2
 def test_main_2():
+    # Input: 5 → rows: A / A B / A B C / A B C D / A B C D E
     with open('result2.txt', 'r') as f:
         lines = f.readlines()
     print(lines)
     lines = [line.strip() for line in lines]
-    regex_test([r'[\w,\W]*[w,W]orld[\w,\W]*'], lines)
+    regex_test([r'^A$', r'^A B C$', r'^A B C D E$'], lines)
+
 
 @pytest.mark.T3
 def test_main_3():
+    # Input: 4 → rows: A / A B / A B C / A B C D
     with open('result3.txt', 'r') as f:
         lines = f.readlines()
     print(lines)
     lines = [line.strip() for line in lines]
-    regex_test([r'[\w,\W]*CS120[\w,\W]*'], lines)
+    regex_test([r'^A$', r'^A B C$', r'^A B C D$'], lines)
+
 
 @pytest.mark.T4
 def test_main_4():
+    # Input: 6 → rows: A / A B / ... / A B C D E F
     with open('result4.txt', 'r') as f:
         lines = f.readlines()
     print(lines)
     lines = [line.strip() for line in lines]
-    regex_test([r'[\w,\W]*Hello[\w,\W]*[w,W]orld[\w,\W]*'], lines)
+    regex_test([r'^A$', r'^A B C D$', r'^A B C D E F$'], lines)
